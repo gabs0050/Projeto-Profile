@@ -1,41 +1,36 @@
 <resources>
-    <string name="app_name">Projeto Profile</string>
+    <string name="app_name">ProfileApp</string>
 
-    <string name="details">Details</string>
-    <string name="back_button_desc">Back button</string>
-    <string name="back_button_clicked">Back button clicked</string>
+    <!-- Descrições -->
+    <string name="background_image_description">Imagem de fundo do usuário</string>
+    <string name="profile_image_description">Imagem de perfil do usuário</string>
+    <string name="back_button_desc">Voltar</string>
+    <string name="view_details">Ver detalhes</string>
 
-    <string name="background_image_desc">Profile background image</string>
-    <string name="profile_image_desc">User profile picture</string>
-
-    <string name="user_name">Jenny Wilson</string>
-    <string name="user_title">Sr. UI/UX Designer</string>
-
-    <string name="email_action">Email</string>
-    <string name="call_action">Call</string>
-    <string name="whatsapp_action">WhatsApp</string>
-    <string name="favorite_action">Favorite</string>
-    <string name="favorite">Favorite</string>
-    <string name="email">Email</string>
-    <string name="official">Official</string>
-    <string name="personal">Personal</string>
-    <string name="phone_number">Phone number</string>
-    <string name="mobile">Mobile</string>
-    <string name="team">Team</string>
-    <string name="project_operation_team">Project Operation Team</string>
-    <string name="leads_by">Leads by</string>
-    <string name="view_details">View details</string>
-    <string name="add_to_contact">Add to contact</string>
-    <string name="share">Share</string>
+    <!-- Títulos e nomes -->
+    <string name="details">Detalhes</string>
     <string name="user_name_jenny">Jenny Wilson</string>
-    <string name="user_title_designer">Sr.UI/UX Designer</string>
-    <string name="star">Star</string>
-    <string name="back">Back</string>
-    <string name="background_image_description">Background Image</string>
-    <string name="profile_image_description">Profile Image</string>
-    <string name="back_clicked">Voltar clicado!</string>
-    <string name="email_clicked">Email Clicado</string>
-    <string name="call_clicked">Call Clicado</string>
-    <string name="whatsapp_clicked">WhatsApp Clicado</string>
-    <string name="favorite_clicked">Favorite Clicado</string>
+    <string name="user_title_designer">Product Designer</string>
+
+    <!-- Ações rápidas -->
+    <string name="email_action">Email</string>
+    <string name="call_action">Ligar</string>
+    <string name="whatsapp_action">WhatsApp</string>
+    <string name="favorite_action">Favoritar</string>
+
+    <!-- Informações de contato -->
+    <string name="email">Email</string>
+    <string name="official">Profissional</string>
+    <string name="personal">Pessoal</string>
+    <string name="phone_number">Telefone</string>
+    <string name="mobile">Celular</string>
+
+    <!-- Seções adicionais -->
+    <string name="team">Equipe</string>
+    <string name="project_operation_team">Equipe de Operações do Projeto</string>
+    <string name="leads_by">Liderado por</string>
+
+    <!-- Botões -->
+    <string name="add_to_contact">Adicionar aos contatos</string>
+    <string name="share">Compartilhar</string>
 </resources>

@@ -5,27 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Message
-import androidx.compose.material.icons.filled.StarBorder
-import androidx.compose.material.icons.filled.Whatsapp
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -55,45 +39,34 @@ fun ScreenUser(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 0.dp,
-                        topEnd = 0.dp,
-                        bottomStart = 16.dp,
-                        bottomEnd = 16.dp
-                    )
-                ),
+                .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)),
             contentAlignment = Alignment.Center
         ) {
-            // Imagem de fundo
             Image(
                 painter = painterResource(id = R.drawable.background_image),
-                contentDescription = "Imagem de fundo",
+                contentDescription = stringResource(id = R.string.background_image_description),
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
 
-            // Sobreposição escura
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color.Black.copy(alpha = 0.3f))
             )
 
-            // Row com a seta e o texto
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 38.dp, start = 12.dp, end = 12.dp)
                     .align(Alignment.TopStart)
                     .clickable {
-                        println("Voltar clicado!")
                     },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Voltar",
+                    contentDescription = stringResource(id = R.string.back_button_desc),
                     tint = Color.White,
                     modifier = Modifier.size(20.dp)
                 )
@@ -106,14 +79,13 @@ fun ScreenUser(modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.weight(1.18f))
             }
 
-            // Column com a imagem de perfil e os textos
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.boy_profile),
-                    contentDescription = "Imagem de perfil",
+                    contentDescription = stringResource(id = R.string.profile_image_description),
                     modifier = Modifier
                         .size(80.dp)
                         .clip(CircleShape),
@@ -121,62 +93,62 @@ fun ScreenUser(modifier: Modifier = Modifier) {
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = "Jenny Wilson",
+                    text = stringResource(id = R.string.user_name_jenny),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(top = 4.dp)
+                    color = Color.White
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Sr.UI/UX Designer",
+                    text = stringResource(id = R.string.user_title_designer),
                     fontSize = 12.sp,
-                    color = Color.White.copy(alpha = 0.7f),
-                    modifier = Modifier.padding(top = 2.dp)
+                    color = Color.White.copy(alpha = 0.7f)
                 )
             }
-            // CARDS ADICIONADOS DENTRO DA BOX
+
             Row(
                 modifier = Modifier
-
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp, vertical = 10.dp,)
+                    .padding(horizontal = 24.dp, vertical = 10.dp)
                     .align(Alignment.BottomCenter),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 ActionCard(
                     icon = Icons.Filled.Email,
-                    text = "Email",
+                    text = stringResource(id = R.string.email_action),
                     backgroundColor = Color.Transparent,
                     borderColor = Color.White,
-                    fixedSize = 60.dp // Tamanho menor para o card de Email
+                    fixedSize = 60.dp
                 )
 
                 ActionCard(
                     icon = Icons.Filled.Call,
-                    text = "Call",
+                    text = stringResource(id = R.string.call_action),
                     backgroundColor = Color.Transparent,
                     borderColor = Color.White,
-                    fixedSize = 60.dp // Tamanho menor para o card de Call
+                    fixedSize = 60.dp
                 )
 
                 ActionCard(
                     icon = Icons.Filled.Whatsapp,
-                    text = "WhatsApp",
+                    text = stringResource(id = R.string.whatsapp_action),
                     backgroundColor = Color.Transparent,
                     borderColor = Color.White,
-                    fixedSize = 60.dp // Tamanho menor para o card de WhatsApp
+                    fixedSize = 60.dp
                 )
 
                 ActionCard(
                     icon = Icons.Filled.StarBorder,
-                    text = "Favorite",
+                    text = stringResource(id = R.string.favorite_action),
                     backgroundColor = Color.Transparent,
                     borderColor = Color.White,
-                    fixedSize = 60.dp // Tamanho menor para o card de Favorite
+                    fixedSize = 60.dp
                 )
             }
         }
+
+        // Fora da Box: Informações de contato
+        UserContactInfo()
     }
 }
 
@@ -187,18 +159,18 @@ fun ActionCard(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.White.copy(alpha = 0.2f),
     borderColor: Color = Color.Transparent,
-    fixedSize: Dp = 70.dp // Novo parâmetro para o tamanho fixo
+    fixedSize: Dp = 70.dp
 ) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
             .background(backgroundColor)
             .border(BorderStroke(1.dp, borderColor), RoundedCornerShape(12.dp))
-            .clickable { /* Ação ao clicar */ }
-            .size(fixedSize) // Aplica o tamanho fixo ao Column
+            .clickable { println("$text clicado!") }
+            .size(fixedSize)
             .padding(vertical = 0.dp, horizontal = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center // Centraliza o conteúdo verticalmente
+        verticalArrangement = Arrangement.Center
     ) {
         Icon(
             imageVector = icon,
@@ -206,14 +178,111 @@ fun ActionCard(
             tint = Color.White,
             modifier = Modifier.size(24.dp)
         )
-
         Spacer(modifier = Modifier.height(8.dp))
-
         Text(
             text = text,
             color = Color.White,
             fontSize = 9.sp
         )
+    }
+}
+
+@Composable
+fun UserContactInfo() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 16.dp)
+    ) {
+        ContactSection(
+            title = stringResource(id = R.string.email),
+            items = listOf(
+                stringResource(id = R.string.official) to "michael.mitc@example.com",
+                stringResource(id = R.string.personal) to "michael@example.com"
+            )
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        ContactSection(
+            title = stringResource(id = R.string.phone_number),
+            items = listOf(stringResource(id = R.string.mobile) to "(209) 555-0104")
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        ContactSectionWithArrow(
+            title = stringResource(id = R.string.team),
+            subtitle = stringResource(id = R.string.project_operation_team)
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        ContactSectionWithArrow(
+            title = stringResource(id = R.string.leads_by),
+            subtitle = "Darrell Steward"
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            ActionButton(text = stringResource(id = R.string.add_to_contact))
+            ActionButton(text = stringResource(id = R.string.share))
+        }
+    }
+}
+
+@Composable
+fun ContactSection(title: String, items: List<Pair<String, String>>) {
+    Column {
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp
+        )
+        items.forEach { (label, value) ->
+            Text(text = label, color = Color.Gray, fontSize = 12.sp)
+            Text(text = value, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+            Spacer(modifier = Modifier.height(4.dp))
+        }
+    }
+}
+
+@Composable
+fun ContactSectionWithArrow(title: String, subtitle: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { }
+            .padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column {
+            Text(text = title, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(text = subtitle, fontSize = 14.sp, color = Color.Gray)
+        }
+        Icon(
+            imageVector = Icons.Default.ArrowForward,
+            contentDescription = stringResource(id = R.string.view_details),
+            tint = Color.Gray
+        )
+    }
+}
+
+@Composable
+fun ActionButton(text: String) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color(0xFFE0E0E0))
+            .clickable { }
+            .padding(vertical = 12.dp, horizontal = 24.dp)
+    ) {
+        Text(text = text, fontSize = 14.sp, color = Color.Black)
     }
 }
 
