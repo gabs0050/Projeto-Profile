@@ -14,23 +14,23 @@
 
     <!-- Ações rápidas -->
     <string name="email_action">Email</string>
-    <string name="call_action">Ligar</string>
+    <string name="call_action">Call</string>
     <string name="whatsapp_action">WhatsApp</string>
-    <string name="favorite_action">Favoritar</string>
+    <string name="favorite_action">Favorite</string>
 
     <!-- Informações de contato -->
     <string name="email">Email</string>
-    <string name="official">Profissional</string>
-    <string name="personal">Pessoal</string>
-    <string name="phone_number">Telefone</string>
-    <string name="mobile">Celular</string>
+    <string name="official">Official</string>
+    <string name="personal">Personal</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="mobile">Mobile</string>
 
     <!-- Seções adicionais -->
-    <string name="team">Equipe</string>
+    <string name="team">Team</string>
     <string name="project_operation_team">Equipe de Operações do Projeto</string>
-    <string name="leads_by">Liderado por</string>
+    <string name="leads_by">Leads by</string>
 
     <!-- Botões -->
-    <string name="add_to_contact">Adicionar aos contatos</string>
+    <string name="add_to_contact">Add to contact</string>
     <string name="share">Compartilhar</string>
 </resources>

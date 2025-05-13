@@ -203,6 +203,8 @@ fun UserContactInfo() {
         )
 
         Spacer(modifier = Modifier.height(12.dp))
+        androidx.compose.material3.Divider(color = Color.LightGray, thickness = 1.dp)
+        Spacer(modifier = Modifier.height(12.dp))
 
         ContactSection(
             title = stringResource(id = R.string.phone_number),
@@ -210,17 +212,23 @@ fun UserContactInfo() {
         )
 
         Spacer(modifier = Modifier.height(12.dp))
+        androidx.compose.material3.Divider(color = Color.LightGray, thickness = 1.dp)
+        Spacer(modifier = Modifier.height(12.dp))
 
         ContactSectionWithArrow(
             title = stringResource(id = R.string.team),
-            subtitle = stringResource(id = R.string.project_operation_team)
+            subtitle = stringResource(id = R.string.project_operation_team),
+            leadingIcon = Icons.Filled.People
         )
 
+        Spacer(modifier = Modifier.height(8.dp))
+        androidx.compose.material3.Divider(color = Color.LightGray, thickness = 1.dp)
         Spacer(modifier = Modifier.height(8.dp))
 
         ContactSectionWithArrow(
             title = stringResource(id = R.string.leads_by),
-            subtitle = "Darrell Steward"
+            subtitle = "Darrell Steward",
+            leadingIcon = Icons.Filled.Person
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -229,7 +237,11 @@ fun UserContactInfo() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            ActionButton(text = stringResource(id = R.string.add_to_contact))
+            ActionButtonWithIcon( // Usando o novo botão com ícone
+                text = stringResource(id = R.string.add_to_contact),
+                icon = Icons.Filled.PersonAdd, // Ícone de adicionar pessoa
+                iconPaddingEnd = 8.dp // Adicionado espaçamento aqui
+            )
             ActionButton(text = stringResource(id = R.string.share))
         }
     }
@@ -238,21 +250,44 @@ fun UserContactInfo() {
 @Composable
 fun ContactSection(title: String, items: List<Pair<String, String>>) {
     Column {
-        Text(
-            text = title,
-            fontWeight = FontWeight.Bold,
-            fontSize = 16.sp
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(bottom = 4.dp)
+        ) {
+            val icon = when (title) {
+                stringResource(id = R.string.email) -> Icons.Filled.Email
+                stringResource(id = R.string.phone_number) -> Icons.Filled.Call
+                else -> null
+            }
+            if (icon != null) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = title,
+                    tint = Color(0xFF7C2CCC),
+                    modifier = Modifier.size(30.dp).padding(end = 8.dp)
+                )
+            }
+            Text(
+                text = title,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp
+            )
+        }
         items.forEach { (label, value) ->
-            Text(text = label, color = Color.Gray, fontSize = 12.sp)
-            Text(text = value, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+            Text(text = label, color = Color.Gray, fontSize = 12.sp, modifier = Modifier.padding(start = 38.dp))
+            Text(text = value, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.padding(start = 38.dp))
             Spacer(modifier = Modifier.height(4.dp))
         }
     }
 }
 
+
 @Composable
-fun ContactSectionWithArrow(title: String, subtitle: String) {
+fun ContactSectionWithArrow(
+    title: String,
+    subtitle: String,
+    leadingIcon: ImageVector? = null
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -261,15 +296,38 @@ fun ContactSectionWithArrow(title: String, subtitle: String) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Column {
-            Text(text = title, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-            Text(text = subtitle, fontSize = 14.sp, color = Color.Gray)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            if (leadingIcon != null) {
+                Icon(
+                    imageVector = leadingIcon,
+                    contentDescription = title,
+                    tint = Color(0xFF7C2CCC),
+                    modifier = Modifier
+                        .size(30.dp)
+                        .padding(end = 8.dp)
+                        .offset(y = (-10).dp)
+                )
+            }
+            Column {
+                Text(text = title, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(text = subtitle, fontSize = 14.sp, color = Color.Black)
+            }
         }
-        Icon(
-            imageVector = Icons.Default.ArrowForward,
-            contentDescription = stringResource(id = R.string.view_details),
-            tint = Color.Gray
-        )
+        Box(
+            modifier = Modifier
+                .size(36.dp)
+                .clip(CircleShape)
+                .background(Color(0xFF7C2CCC)),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = Icons.Default.ArrowForward,
+                contentDescription = stringResource(id = R.string.view_details),
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+        }
     }
 }
 
@@ -286,6 +344,34 @@ fun ActionButton(text: String) {
     }
 }
 
+@Composable
+fun ActionButtonWithIcon(
+    text: String,
+    icon: ImageVector,
+    iconPaddingEnd: Dp = 0.dp
+) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color(0xFFE0E0E0))
+            .clickable { }
+            .padding(vertical = 12.dp, horizontal = 24.dp),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        Row( // Adicionando uma Row para organizar o ícone e o texto
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = text,
+                tint = Color.Black,
+                modifier = Modifier.size(30.dp).padding(end = iconPaddingEnd) // Aplicando o padding aqui
+            )
+            Spacer(modifier = Modifier.width(4.dp)) // Adicionando um Spacer entre o ícone e o texto
+            Text(text = text, fontSize = 14.sp, color = Color.Black)
+        }
+    }
+}
 @Preview(showSystemUi = true)
 @Composable
 private fun ScreenUserPreview() {
